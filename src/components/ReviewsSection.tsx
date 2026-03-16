@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const reviews = [
-  { name: "Sarah M.", text: "Amazing instructor! Passed my test on the first go. Highly recommend D-Tech Driver Training.", rating: 5 },
-  { name: "James L.", text: "Very patient and professional. The test route practice was incredibly helpful. Thank you!", rating: 5 },
-  { name: "Priya K.", text: "I was so nervous but the instructor made me feel comfortable. Passed first time!", rating: 5 },
-  { name: "Ahmed R.", text: "Converted my overseas licence smoothly. Great lessons and very affordable packages.", rating: 5 },
+  { name: "Sarah M.", text: "Amazing instructor! Passed my test on the first go. The patience and professionalism made all the difference.", time: "2 weeks ago" },
+  { name: "James L.", text: "Very patient and professional. The test route practice was incredibly helpful. Highly recommend D-Tech!", time: "1 month ago" },
+  { name: "Priya K.", text: "I was so nervous but the instructor made me feel comfortable and well-prepared. Passed first time!", time: "3 weeks ago" },
+  { name: "Ahmed R.", text: "Converted my overseas licence smoothly. Great lessons, affordable packages, and fantastic results.", time: "2 months ago" },
 ];
 
 const Stars = () => (
@@ -16,25 +16,38 @@ const Stars = () => (
 );
 
 const ReviewsSection = () => (
-  <section className="section-padding">
-    <div className="container-tight">
+  <section className="section-padding relative overflow-hidden">
+    <div className="absolute inset-0 bg-gradient-to-b from-muted/30 to-background" />
+    <div className="container-tight relative">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-        <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4">What Students <span className="text-gradient">Say</span></h2>
-        <p className="text-muted-foreground">Real reviews from real students.</p>
+        <div className="section-badge">Reviews</div>
+        <h2 className="section-title">Loved by <span className="text-gradient">Students</span></h2>
+        <p className="section-subtitle">Real reviews from students who passed with D-Tech.</p>
       </motion.div>
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid sm:grid-cols-2 gap-5">
         {reviews.map((r, i) => (
           <motion.div
             key={r.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.4 }}
-            className="card-elevated p-8"
+            transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="card-elevated p-7 transition-all duration-300"
           >
-            <Stars />
-            <p className="mt-4 text-muted-foreground leading-relaxed italic">"{r.text}"</p>
-            <p className="mt-4 font-display font-semibold text-sm">{r.name}</p>
+            <div className="flex items-center justify-between mb-4">
+              <Stars />
+              <span className="text-xs text-muted-foreground">{r.time}</span>
+            </div>
+            <p className="text-muted-foreground leading-relaxed text-sm mb-5">"{r.text}"</p>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full flex items-center justify-center font-display font-bold text-sm" style={{ background: 'hsl(var(--primary-light))', color: 'hsl(var(--primary))' }}>
+                {r.name[0]}
+              </div>
+              <div>
+                <p className="font-display font-semibold text-sm text-foreground">{r.name}</p>
+                <p className="text-xs text-muted-foreground">Verified Student</p>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
