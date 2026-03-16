@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,47 +6,52 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 25% 10%;
+    --background: 210 20% 99%;
+    --foreground: 222 47% 11%;
 
-    --card: 210 40% 98%;
-    --card-foreground: 220 25% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 217 91% 50%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 32% 96%;
-    --secondary-foreground: 220 25% 10%;
+    --primary-light: 221 83% 96%;
+    --primary-dark: 224 76% 42%;
 
-    --muted: 214 32% 96%;
-    --muted-foreground: 220 10% 46%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
 
-    --accent: 214 32% 96%;
-    --accent-foreground: 220 25% 10%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 92%;
-    --input: 214 20% 92%;
-    --ring: 217 91% 50%;
+    --border: 214 20% 93%;
+    --input: 214 20% 93%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(217 91% 50%), hsl(230 80% 58%));
-    --glow: 0 4px 30px -6px hsl(217 91% 50% / 0.25);
+    --hero-gradient: linear-gradient(135deg, hsl(221 83% 53%), hsl(245 58% 51%));
+    --glow: 0 8px 40px -8px hsl(221 83% 53% / 0.3);
+    --card-shadow: 0 1px 3px hsl(221 83% 53% / 0.04), 0 4px 12px hsl(221 83% 53% / 0.06);
+    --card-shadow-hover: 0 4px 16px hsl(221 83% 53% / 0.08), 0 12px 40px hsl(221 83% 53% / 0.1);
 
     --sidebar-background: 210 40% 98%;
-    --sidebar-foreground: 220 10% 46%;
-    --sidebar-primary: 217 91% 50%;
+    --sidebar-foreground: 215 16% 47%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 32% 96%;
-    --sidebar-accent-foreground: 220 25% 10%;
-    --sidebar-border: 214 20% 92%;
-    --sidebar-ring: 217 91% 50%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 20% 93%;
+    --sidebar-ring: 221 83% 53%;
   }
 }
 
@@ -60,7 +65,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+    @apply font-display tracking-tight;
   }
 }
 
@@ -71,11 +76,17 @@
   }
 
   .card-elevated {
-    @apply bg-card border border-border rounded-2xl shadow-sm;
+    @apply bg-card rounded-2xl;
+    box-shadow: var(--card-shadow);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .card-elevated:hover {
+    box-shadow: var(--card-shadow-hover);
   }
 
   .section-padding {
-    @apply py-20 md:py-28 px-4;
+    @apply py-24 md:py-32 px-4;
   }
 
   .container-tight {
@@ -83,18 +94,38 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-xl font-display font-bold text-lg transition-all duration-200 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-2xl font-display font-bold text-lg transition-all duration-200 hover:-translate-y-0.5;
     background-image: var(--hero-gradient);
     color: hsl(var(--primary-foreground));
     box-shadow: var(--glow);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 8px 40px -6px hsl(217 91% 50% / 0.4);
+    box-shadow: 0 12px 48px -8px hsl(221 83% 53% / 0.45);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-xl border border-border bg-background text-foreground font-display font-semibold text-lg hover:bg-secondary transition-all duration-200 hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-2xl border bg-card text-foreground font-display font-semibold text-lg transition-all duration-200 hover:-translate-y-0.5;
+    border-color: hsl(var(--border));
+    box-shadow: var(--card-shadow);
+  }
+
+  .btn-secondary:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .section-badge {
+    @apply inline-block px-5 py-1.5 rounded-full text-sm font-medium mb-6 tracking-wide;
+    background: hsl(var(--primary-light));
+    color: hsl(var(--primary));
+  }
+
+  .section-title {
+    @apply text-3xl md:text-5xl font-display font-extrabold mb-5 text-foreground;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed;
   }
 }
 
