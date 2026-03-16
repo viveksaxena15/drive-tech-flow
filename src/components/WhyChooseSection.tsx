@@ -10,11 +10,11 @@ const reasons = [
 ];
 
 const WhyChooseSection = () => (
-  <section className="section-padding bg-secondary/20">
+  <section className="section-padding">
     <div className="container-tight">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4">Why Choose <span className="text-gradient">D-Tech?</span></h2>
+          <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4 text-foreground">Why Choose <span className="text-gradient">D-Tech?</span></h2>
           <p className="text-muted-foreground mb-8">We're committed to helping you become a safe, confident driver with the skills to pass your test on the first try.</p>
           <ul className="space-y-4">
             {reasons.map(r => (
